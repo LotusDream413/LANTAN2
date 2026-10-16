@@ -195,7 +195,7 @@ export const MultiDimensionalAnalysisView: React.FC<MultiDimensionalAnalysisView
         ]);
         downloadCSV(`山东省海洋强省与蓝碳政策考核台账_${selectedYear}`, headers, rows);
       } else if (activeDimension === 'bio_carbon') {
-        const headers = ['生物门类', '主要代表物种', '养殖面积(万亩)', '年收获产量(万吨)', '固碳速率(tCO2e/ha·a)', '年固碳量(万吨CO2e)', '占比(%)', '渔业产值(亿元)', '净水量(亿吨)', '同比增长(%)'];
+        const headers = ['生物门类', '主要代表物种', '养殖面积(万亩)', '年收获产量(万吨)', '固碳速率(tCO₂e/ha·a)', '年固碳量(万吨CO₂e)', '占比(%)', '渔业产值(亿元)', '净水量(亿吨)', '同比增长(%)'];
         const rows = filteredBioCarbon.map(r => [
           r.category, r.species, r.cultureArea, r.annualYield, r.carbonSinkRate, r.annualCarbonSink, `${r.sharePercentage}%`, r.economicValue, r.purificationPower, `+${r.trendYoY}%`
         ]);
@@ -207,7 +207,7 @@ export const MultiDimensionalAnalysisView: React.FC<MultiDimensionalAnalysisView
         ]);
         downloadCSV(`山东省陆海统筹水质生态与脆弱性台账_${selectedYear}`, headers, rows);
       } else if (activeDimension === 'ccer_market') {
-        const headers = ['项目编号', '工程项目全称', '实施区县', '适用方法学', '第三方核查机构', '核证量(tCO2e)', '成交价(元/吨)', '总金额(万元)', '履约率(%)', '注册状态'];
+        const headers = ['项目编号', '工程项目全称', '实施区县', '适用方法学', '第三方核查机构', '核证量(tCO₂e)', '成交价(元/吨)', '总金额(万元)', '履约率(%)', '注册状态'];
         const rows = filteredCCERProjects.map(r => [
           r.projectNo, r.projectName, r.region, r.methodology, r.verifier, r.carbonCreditTons, r.unitPrice, r.totalAmountWan, `${r.fulfillmentRate}%`, r.registryStatus
         ]);
@@ -325,7 +325,7 @@ export const MultiDimensionalAnalysisView: React.FC<MultiDimensionalAnalysisView
     return list;
   }, [searchQuery]);
 
-  // Render SVG interactive line chart
+  // Render SVG interactive line chart with doubled high-contrast typography (~2x scale for clear readability)
   const renderTrendLineChart = (
     data: any[],
     xKey: string,
@@ -333,9 +333,9 @@ export const MultiDimensionalAnalysisView: React.FC<MultiDimensionalAnalysisView
     title: string
   ) => {
     if (!data || data.length === 0) return null;
-    const width = 640;
-    const height = 220;
-    const padding = { top: 30, right: 30, bottom: 35, left: 45 };
+    const width = 800;
+    const height = 360;
+    const padding = { top: 45, right: 45, bottom: 65, left: 95 };
 
     const chartW = width - padding.left - padding.right;
     const chartH = height - padding.top - padding.bottom;
@@ -355,26 +355,26 @@ export const MultiDimensionalAnalysisView: React.FC<MultiDimensionalAnalysisView
     const getY = (val: number) => padding.top + chartH - ((val - minVal) / valRange) * chartH;
 
     return (
-      <div className="p-4 rounded-xl bg-slate-900/90 border border-slate-800 shadow-lg">
-        <div className="flex items-center justify-between mb-2">
-          <div className="flex items-center gap-2">
-            <TrendingUp className="w-4 h-4 text-cyan-400" />
-            <h4 className="text-xs font-bold text-slate-200 tracking-wide">{title}</h4>
+      <div className="p-5 sm:p-6 rounded-2xl bg-slate-900/95 border border-cyan-500/30 shadow-2xl">
+        <div className="flex flex-wrap items-center justify-between gap-3 mb-4 pb-3 border-b border-slate-800">
+          <div className="flex items-center gap-3">
+            <TrendingUp className="w-6 h-6 text-cyan-400" />
+            <h4 className="text-lg sm:text-2xl font-black text-white tracking-wide">{title}</h4>
           </div>
-          {/* Legend */}
-          <div className="flex items-center gap-3 text-[10px]">
+          {/* Legend - doubled size */}
+          <div className="flex items-center gap-5 text-sm sm:text-base font-bold">
             {lines.map((l) => (
-              <div key={l.key} className="flex items-center gap-1.5 font-medium">
-                <span className="w-2.5 h-2.5 rounded-full" style={{ backgroundColor: l.color }} />
-                <span className="text-slate-300">{l.label}</span>
-                <span className="text-slate-500 font-mono font-num">({l.unit})</span>
+              <div key={l.key} className="flex items-center gap-2.5">
+                <span className="w-4 h-4 rounded-full shadow-md" style={{ backgroundColor: l.color }} />
+                <span className="text-white font-bold">{l.label}</span>
+                <span className="text-cyan-300 font-mono font-num">({l.unit})</span>
               </div>
             ))}
           </div>
         </div>
 
-        <svg viewBox={`0 0 ${width} ${height}`} className="w-full h-44 overflow-visible">
-          {/* Horizontal grid lines */}
+        <svg viewBox={`0 0 ${width} ${height}`} className="w-full h-72 sm:h-84 overflow-visible">
+          {/* Horizontal grid lines and enlarged Y-axis tick values (2x size: fontSize 22) */}
           {[0, 0.25, 0.5, 0.75, 1].map((ratio) => {
             const y = padding.top + chartH * (1 - ratio);
             const val = minVal + valRange * ratio;
@@ -385,15 +385,18 @@ export const MultiDimensionalAnalysisView: React.FC<MultiDimensionalAnalysisView
                   y1={y}
                   x2={width - padding.right}
                   y2={y}
-                  stroke="rgba(255,255,255,0.07)"
-                  strokeDasharray="3 3"
+                  stroke="rgba(255,255,255,0.16)"
+                  strokeDasharray="4 4"
                 />
                 <text
-                  x={padding.left - 8}
-                  y={y + 3}
+                  x={padding.left - 16}
+                  y={y + 7}
                   textAnchor="end"
-                  fill="#64748b"
-                  className="font-mono text-[9px] tabular-nums"
+                  fill="#ffffff"
+                  fontSize="22"
+                  fontWeight="900"
+                  fontFamily="Chakra Petch, JetBrains Mono, monospace"
+                  className="tabular-nums"
                 >
                   {val.toFixed(val > 100 ? 0 : 1)}
                 </text>
@@ -411,10 +414,10 @@ export const MultiDimensionalAnalysisView: React.FC<MultiDimensionalAnalysisView
                   points={points}
                   fill="none"
                   stroke={line.color}
-                  strokeWidth="2.5"
+                  strokeWidth="4"
                   strokeLinecap="round"
                   strokeLinejoin="round"
-                  className="transition-all duration-300 drop-shadow-[0_0_8px_rgba(6,182,212,0.4)]"
+                  className="transition-all duration-300 drop-shadow-[0_0_12px_rgba(6,182,212,0.6)]"
                 />
                 {/* Dots with values */}
                 {data.map((d, i) => {
@@ -425,12 +428,25 @@ export const MultiDimensionalAnalysisView: React.FC<MultiDimensionalAnalysisView
                       <circle
                         cx={cx}
                         cy={cy}
-                        r="3.5"
-                        fill="#0f172a"
+                        r="6"
+                        fill="#0b1329"
                         stroke={line.color}
-                        strokeWidth="2"
-                        className="transition-all hover:r-5"
+                        strokeWidth="3"
+                        className="transition-all hover:r-8"
                       />
+                      {/* Direct value callout above each point */}
+                      <text
+                        x={cx}
+                        y={cy - 12}
+                        textAnchor="middle"
+                        fill="#ffffff"
+                        fontSize="15"
+                        fontWeight="900"
+                        fontFamily="Chakra Petch, JetBrains Mono, monospace"
+                        className="drop-shadow-[0_2px_4px_rgba(0,0,0,0.9)] select-none"
+                      >
+                        {d[line.key]}
+                      </text>
                       <title>{`${d[xKey]}年 ${line.label}: ${d[line.key]} ${line.unit}`}</title>
                     </g>
                   );
@@ -439,17 +455,19 @@ export const MultiDimensionalAnalysisView: React.FC<MultiDimensionalAnalysisView
             );
           })}
 
-          {/* X axis labels */}
+          {/* X axis labels - doubled font size (fontSize 22) */}
           {data.map((d, i) => {
             const x = getX(i);
             return (
               <text
                 key={i}
                 x={x}
-                y={height - padding.bottom + 18}
+                y={height - padding.bottom + 42}
                 textAnchor="middle"
-                fill="#94a3b8"
-                className="font-mono text-[10px] font-semibold"
+                fill="#ffffff"
+                fontSize="22"
+                fontWeight="900"
+                fontFamily="Chakra Petch, JetBrains Mono, monospace"
               >
                 {d[xKey]}
               </text>
@@ -665,13 +683,13 @@ export const MultiDimensionalAnalysisView: React.FC<MultiDimensionalAnalysisView
               </div>
 
               <div className="p-4 rounded-xl bg-slate-900/80 border border-emerald-500/25 shadow-md">
-                <div className="text-[11px] text-slate-400 font-medium">蓝碳普惠机制注册与认购市民</div>
+                <div className="text-xs text-slate-300 font-semibold">蓝碳普惠机制注册与认购市民</div>
                 <div className="flex items-baseline gap-1 mt-1">
                   <span className="text-2xl font-extrabold text-emerald-300 font-num">184.8</span>
-                  <span className="text-xs text-slate-400">万人次</span>
+                  <span className="text-xs text-slate-300 font-bold">万人次</span>
                 </div>
-                <div className="text-[10px] text-emerald-400 mt-1">
-                  <span>人均减碳量 12.8 kg CO2/年</span>
+                <div className="text-xs font-semibold text-emerald-400 mt-1">
+                  <span>人均减碳量 12.8 kg CO₂/年</span>
                 </div>
               </div>
 
@@ -702,44 +720,44 @@ export const MultiDimensionalAnalysisView: React.FC<MultiDimensionalAnalysisView
                 )}
 
                 {/* Chart 2: Stacked/Grouped Bar Chart - Gender Structure Across Coastal Cities */}
-                <div className="p-4 rounded-xl bg-slate-900/90 border border-slate-800 shadow-lg flex flex-col justify-between">
-                  <div className="flex items-center justify-between mb-3">
-                    <div className="flex items-center gap-2">
-                      <BarChart3 className="w-4 h-4 text-amber-400" />
-                      <h4 className="text-xs font-bold text-slate-200 tracking-wide">
+                <div className="p-5 rounded-2xl bg-slate-900/95 border border-slate-800 shadow-2xl flex flex-col justify-between">
+                  <div className="flex flex-wrap items-center justify-between gap-2 mb-4 pb-3 border-b border-slate-800">
+                    <div className="flex items-center gap-2.5">
+                      <BarChart3 className="w-5 h-5 text-amber-400" />
+                      <h4 className="text-base sm:text-lg font-black text-white tracking-wide">
                         沿海各市涉海劳动力规模与男女劳动者结构对比 (万人)
                       </h4>
                     </div>
-                    <div className="flex items-center gap-3 text-[10px]">
-                      <div className="flex items-center gap-1 font-medium">
-                        <span className="w-2.5 h-2.5 rounded-full bg-cyan-400" />
-                        <span className="text-slate-300">男性劳动力</span>
+                    <div className="flex items-center gap-4 text-xs font-bold">
+                      <div className="flex items-center gap-1.5">
+                        <span className="w-3.5 h-3.5 rounded-full bg-cyan-400 shadow-sm" />
+                        <span className="text-white">男性劳动力</span>
                       </div>
-                      <div className="flex items-center gap-1 font-medium">
-                        <span className="w-2.5 h-2.5 rounded-full bg-rose-400" />
-                        <span className="text-slate-300">女性劳动力 (种苗/加工/微藻)</span>
+                      <div className="flex items-center gap-1.5">
+                        <span className="w-3.5 h-3.5 rounded-full bg-rose-400 shadow-sm" />
+                        <span className="text-white">女性劳动力 (种苗/加工/微藻)</span>
                       </div>
                     </div>
                   </div>
 
                   {/* Horizontal Bar Chart for Cities */}
-                  <div className="space-y-2.5">
+                  <div className="space-y-3.5">
                     {COASTAL_DEMOGRAPHICS.map((city) => {
                       const maxTotal = 90;
                       const maleWidth = (city.maleLabor / maxTotal) * 100;
                       const femaleWidth = (city.femaleLabor / maxTotal) * 100;
                       return (
-                        <div key={city.city} className="space-y-1">
-                          <div className="flex items-center justify-between text-xs">
-                            <span className="font-semibold text-slate-200">{city.city}</span>
-                            <div className="flex items-center gap-2 font-mono text-[11px]">
+                        <div key={city.city} className="space-y-1.5">
+                          <div className="flex items-center justify-between text-sm">
+                            <span className="font-extrabold text-white text-base">{city.city}</span>
+                            <div className="flex items-center gap-2.5 font-mono text-xs sm:text-sm font-bold">
                               <span className="text-cyan-400 font-num">{city.maleLabor}万 ({city.maleRatio}%)</span>
-                              <span className="text-slate-600">/</span>
+                              <span className="text-slate-500">/</span>
                               <span className="text-rose-400 font-num">{city.femaleLabor}万 ({city.femaleRatio}%)</span>
-                              <span className="text-slate-400 text-[10px]">总 {city.marineLabor}万</span>
+                              <span className="text-slate-200 text-xs font-semibold bg-slate-800/80 px-2 py-0.5 rounded">总 {city.marineLabor}万</span>
                             </div>
                           </div>
-                          <div className="w-full h-3 rounded-full bg-slate-950 overflow-hidden flex p-0.5 border border-slate-800">
+                          <div className="w-full h-4 rounded-full bg-slate-950 overflow-hidden flex p-0.5 border border-slate-800 shadow-inner">
                             <div
                               className="h-full bg-gradient-to-r from-cyan-600 to-cyan-400 rounded-l-full transition-all duration-500"
                               style={{ width: `${maleWidth}%` }}
@@ -1143,46 +1161,46 @@ export const MultiDimensionalAnalysisView: React.FC<MultiDimensionalAnalysisView
             {/* KPI Cards */}
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
               <div className="p-4 rounded-xl bg-slate-900/80 border border-amber-500/25 shadow-md">
-                <div className="text-[11px] text-slate-400 font-medium">全省海洋贝藻生物固碳总量</div>
+                <div className="text-xs text-slate-300 font-semibold">全省海洋贝藻生物固碳总量</div>
                 <div className="flex items-baseline gap-1 mt-1">
                   <span className="text-2xl font-extrabold text-amber-300 font-num">235.1</span>
-                  <span className="text-xs text-slate-400">万吨CO2e/年</span>
+                  <span className="text-xs text-slate-300 font-bold">万吨CO₂e/年</span>
                 </div>
-                <div className="text-[10px] text-emerald-400 mt-1 flex items-center gap-1">
-                  <TrendingUp className="w-3 h-3" />
+                <div className="text-xs font-semibold text-emerald-400 mt-1 flex items-center gap-1">
+                  <TrendingUp className="w-3.5 h-3.5" />
                   <span>居全国首位 · 占全国近海养殖固碳 34%</span>
                 </div>
               </div>
 
               <div className="p-4 rounded-xl bg-slate-900/80 border border-cyan-500/25 shadow-md">
-                <div className="text-[11px] text-slate-400 font-medium">碳汇渔业综合经济产值</div>
+                <div className="text-xs text-slate-300 font-semibold">碳汇渔业综合经济产值</div>
                 <div className="flex items-baseline gap-1 mt-1">
                   <span className="text-2xl font-extrabold text-cyan-300 font-num">605.3</span>
-                  <span className="text-xs text-slate-400">亿元</span>
+                  <span className="text-xs text-slate-300 font-bold">亿元</span>
                 </div>
-                <div className="text-[10px] text-cyan-400 mt-1">
+                <div className="text-xs font-semibold text-cyan-400 mt-1">
                   <span>“以渔抑藻、以贝净水”双向转化</span>
                 </div>
               </div>
 
               <div className="p-4 rounded-xl bg-slate-900/80 border border-emerald-500/25 shadow-md">
-                <div className="text-[11px] text-slate-400 font-medium">双壳贝类生物钙化固碳量</div>
+                <div className="text-xs text-slate-300 font-semibold">双壳贝类生物钙化固碳量</div>
                 <div className="flex items-baseline gap-1 mt-1">
                   <span className="text-2xl font-extrabold text-emerald-300 font-num">100.6</span>
-                  <span className="text-xs text-slate-400">万吨碳酸钙</span>
+                  <span className="text-xs text-slate-300 font-bold">万吨碳酸钙</span>
                 </div>
-                <div className="text-[10px] text-emerald-400 mt-1">
+                <div className="text-xs font-semibold text-emerald-400 mt-1">
                   <span>百年尺度长期碳汇封存</span>
                 </div>
               </div>
 
               <div className="p-4 rounded-xl bg-slate-900/80 border border-purple-500/25 shadow-md">
-                <div className="text-[11px] text-slate-400 font-medium">年净水与富营养化消减能力</div>
+                <div className="text-xs text-slate-300 font-semibold">年净水与富营养化消减能力</div>
                 <div className="flex items-baseline gap-1 mt-1">
                   <span className="text-2xl font-extrabold text-purple-300 font-num">93.5</span>
-                  <span className="text-xs text-slate-400">亿吨海水</span>
+                  <span className="text-xs text-slate-300 font-bold">亿吨海水</span>
                 </div>
-                <div className="text-[10px] text-purple-300 mt-1">
+                <div className="text-xs font-semibold text-purple-300 mt-1">
                   <span>相当于重滤近岸海湾水体 2.4 遍</span>
                 </div>
               </div>
@@ -1196,7 +1214,7 @@ export const MultiDimensionalAnalysisView: React.FC<MultiDimensionalAnalysisView
                   BIO_CARBON_TRENDS,
                   'year',
                   [
-                    { key: 'carbonSink', color: '#f59e0b', label: '生物固碳量', unit: '万吨CO2e' },
+                    { key: 'carbonSink', color: '#f59e0b', label: '生物固碳量', unit: '万吨CO₂e' },
                     { key: 'economicValue', color: '#06b6d4', label: '渔业产值', unit: '亿元' },
                   ],
                   '2020-2026年山东省贝藻碳汇固碳量与渔业经济总产值协同增长折线图'
@@ -1208,7 +1226,7 @@ export const MultiDimensionalAnalysisView: React.FC<MultiDimensionalAnalysisView
                     <div className="flex items-center gap-2">
                       <Fish className="w-4 h-4 text-cyan-400" />
                       <h4 className="text-xs font-bold text-slate-200 tracking-wide">
-                        典型碳汇生物固碳量贡献与占比构成 (万吨CO2e)
+                        典型碳汇生物固碳量贡献与占比构成 (万吨CO₂e)
                       </h4>
                     </div>
                     <span className="text-[10px] font-mono text-cyan-400">焦念志院士/唐启升院士模型</span>
@@ -1281,8 +1299,8 @@ export const MultiDimensionalAnalysisView: React.FC<MultiDimensionalAnalysisView
                         <th className="p-3.5 font-bold">主要代表物种</th>
                         <th className="p-3.5 font-bold text-right">养殖面积 (万亩)</th>
                         <th className="p-3.5 font-bold text-right">年收获产量 (万吨)</th>
-                        <th className="p-3.5 font-bold text-right">固碳速率 (tCO2e/ha·a)</th>
-                        <th className="p-3.5 font-bold text-right">年固碳量 (万吨CO2e)</th>
+                        <th className="p-3.5 font-bold text-right">固碳速率 (tCO₂e/ha·a)</th>
+                        <th className="p-3.5 font-bold text-right">年固碳量 (万吨CO₂e)</th>
                         <th className="p-3.5 font-bold text-right">占比 (%)</th>
                         <th className="p-3.5 font-bold text-right">渔业经济产值 (亿元)</th>
                         <th className="p-3.5 font-bold text-right">水体净化量 (亿吨)</th>
@@ -1495,45 +1513,45 @@ export const MultiDimensionalAnalysisView: React.FC<MultiDimensionalAnalysisView
             {/* KPI Cards */}
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
               <div className="p-4 rounded-xl bg-slate-900/80 border border-purple-500/25 shadow-md">
-                <div className="text-[11px] text-slate-400 font-medium">国家注册簿蓝碳累计备案量</div>
+                <div className="text-xs text-slate-300 font-semibold">国家注册簿蓝碳累计备案量</div>
                 <div className="flex items-baseline gap-1 mt-1">
                   <span className="text-2xl font-extrabold text-purple-300 font-num">47.9</span>
-                  <span className="text-xs text-slate-400">万吨CO2e</span>
+                  <span className="text-xs text-slate-300 font-bold">万吨CO₂e</span>
                 </div>
-                <div className="text-[10px] text-emerald-400 mt-1">
+                <div className="text-xs font-semibold text-emerald-400 mt-1">
                   <span>涉及海草床、盐沼及大型藻场</span>
                 </div>
               </div>
 
               <div className="p-4 rounded-xl bg-slate-900/80 border border-amber-500/25 shadow-md">
-                <div className="text-[11px] text-slate-400 font-medium">蓝碳现货平均成交单价</div>
+                <div className="text-xs text-slate-300 font-semibold">蓝碳现货平均成交单价</div>
                 <div className="flex items-baseline gap-1 mt-1">
                   <span className="text-2xl font-extrabold text-amber-300 font-num">81.60</span>
-                  <span className="text-xs text-slate-400">元/吨</span>
+                  <span className="text-xs text-slate-300 font-bold">元/吨</span>
                 </div>
-                <div className="text-[10px] text-emerald-400 mt-1">
+                <div className="text-xs font-semibold text-emerald-400 mt-1">
                   <span>较全国碳市场均价溢价 +3.9%</span>
                 </div>
               </div>
 
               <div className="p-4 rounded-xl bg-slate-900/80 border border-cyan-500/25 shadow-md">
-                <div className="text-[11px] text-slate-400 font-medium">累计挂牌与撮合成交金额</div>
+                <div className="text-xs text-slate-300 font-semibold">累计挂牌与撮合成交金额</div>
                 <div className="flex items-baseline gap-1 mt-1">
                   <span className="text-2xl font-extrabold text-cyan-300 font-num">3,958.3</span>
-                  <span className="text-xs text-slate-400">万元</span>
+                  <span className="text-xs text-slate-300 font-bold">万元</span>
                 </div>
-                <div className="text-[10px] text-cyan-400 mt-1">
+                <div className="text-xs font-semibold text-cyan-400 mt-1">
                   <span>企业履约与社会中和认购率 97.4%</span>
                 </div>
               </div>
 
               <div className="p-4 rounded-xl bg-slate-900/80 border border-emerald-500/25 shadow-md">
-                <div className="text-[11px] text-slate-400 font-medium">关联绿色金融与碳质押授信</div>
+                <div className="text-xs text-slate-300 font-semibold">关联绿色金融与碳质押授信</div>
                 <div className="flex items-baseline gap-1 mt-1">
                   <span className="text-2xl font-extrabold text-emerald-300 font-num">22.4</span>
-                  <span className="text-xs text-slate-400">亿元</span>
+                  <span className="text-xs text-slate-300 font-bold">亿元</span>
                 </div>
-                <div className="text-[10px] text-emerald-400 mt-1">
+                <div className="text-xs font-semibold text-emerald-400 mt-1">
                   <span>海洋碳汇预期收益权质押贷款</span>
                 </div>
               </div>
@@ -1558,7 +1576,7 @@ export const MultiDimensionalAnalysisView: React.FC<MultiDimensionalAnalysisView
                     <div className="flex items-center gap-2">
                       <Coins className="w-4 h-4 text-purple-400" />
                       <h4 className="text-xs font-bold text-slate-200 tracking-wide">
-                        各沿海试点项目核证量 (tCO2e) 与流转完成率
+                        各沿海试点项目核证量 (tCO₂e) 与流转完成率
                       </h4>
                     </div>
                   </div>
@@ -1586,7 +1604,7 @@ export const MultiDimensionalAnalysisView: React.FC<MultiDimensionalAnalysisView
                     ))}
                   </div>
 
-                  <div className="mt-3 pt-2 border-t border-slate-800 text-[10px] text-slate-400 flex items-center justify-between">
+                  <div className="mt-3 pt-2 border-t border-slate-800 text-xs text-slate-300 font-semibold flex items-center justify-between">
                     <span>*依托中环联合(CEC)、中国船级社(CCSC)第三方核证</span>
                     <span className="text-purple-400 font-mono">区块链存证已上链</span>
                   </div>
@@ -1614,7 +1632,7 @@ export const MultiDimensionalAnalysisView: React.FC<MultiDimensionalAnalysisView
                         <th className="p-3.5 font-bold">实施区县</th>
                         <th className="p-3.5 font-bold">适用方法学</th>
                         <th className="p-3.5 font-bold">第三方核验机构</th>
-                        <th className="p-3.5 font-bold text-right">核证量 (tCO2e)</th>
+                        <th className="p-3.5 font-bold text-right">核证量 (tCO₂e)</th>
                         <th className="p-3.5 font-bold text-right">成交价 (元/吨)</th>
                         <th className="p-3.5 font-bold text-right">总金额 (万元)</th>
                         <th className="p-3.5 font-bold text-right">履约率</th>
@@ -1656,10 +1674,10 @@ export const MultiDimensionalAnalysisView: React.FC<MultiDimensionalAnalysisView
             {/* KPI Cards */}
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
               <div className="p-4 rounded-xl bg-slate-900/80 border border-teal-500/25 shadow-md">
-                <div className="text-[11px] text-slate-400 font-medium">全省全年海-气净碳吸收通量</div>
+                <div className="text-xs text-slate-300 font-semibold">全省全年海-气净碳吸收通量</div>
                 <div className="flex items-baseline gap-1 mt-1">
                   <span className="text-2xl font-extrabold text-teal-300 font-num">384.62</span>
-                  <span className="text-xs text-slate-400">万吨CO2e</span>
+                  <span className="text-xs text-slate-300 font-bold">万吨CO₂e</span>
                 </div>
                 <div className="text-[10px] text-emerald-400 mt-1">
                   <span>夏秋季藻类快速生长呈高吸收波峰</span>

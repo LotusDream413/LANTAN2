@@ -72,7 +72,7 @@ export const Station3DDigitalTwinModal: React.FC<Station3DDigitalTwinModalProps>
   const stationPois: Record<string, { id: string; name: string; xPct: number; yPct: number; telemetry: string; desc: string }[]> = {
     dongying: [
       { id: 'dy1', name: '黄蓝交汇涌浪监测断面', xPct: 48, yPct: 42, telemetry: '通量: -12.4 g C/(m²·d)', desc: '泥沙悬浮颗粒吸附大量陆源有机碳，在此发生重力絮凝沉降' },
-      { id: 'dy2', name: '河口微型生物碳泵原位采样点', xPct: 68, yPct: 35, telemetry: 'pCO2: 348 μatm | 盐度: 26.8 PSU', desc: '监测河海交界带异养细菌利用高活性溶解有机碳合成惰性RDOC速率' },
+      { id: 'dy2', name: '河口微型生物碳泵原位采样点', xPct: 68, yPct: 35, telemetry: 'pCO₂: 348 μatm | 盐度: 26.8 PSU', desc: '监测河海交界带异养细菌利用高活性溶解有机碳合成惰性RDOC速率' },
       { id: 'dy3', name: '潮滩翅碱蓬样方观测塔', xPct: 22, yPct: 58, telemetry: '覆盖度: 88.5% | 生物量: 1420 g/m²', desc: '中国暖温带最年轻湿地，耐盐碱植物根系沉积千年有机碳库' },
     ],
     weihai: [
@@ -82,7 +82,7 @@ export const Station3DDigitalTwinModal: React.FC<Station3DDigitalTwinModalProps>
     ],
     qingdao: [
       { id: 'qd1', name: '中科院野外海洋生态实验观测楼', xPct: 26, yPct: 62, telemetry: '连续序列: 38 年 | 仪器入网: 100%', desc: '胶州湾国家级野外站核心实验室，开展长期海洋生物地球化学过程监测' },
-      { id: 'qd2', name: '湾口高频二氧化碳分压(pCO2)系统', xPct: 58, yPct: 46, telemetry: '海气交换通量: -8.6 g C/(m²·d)', desc: '毫秒级自动捕捉海面微气象与碳汇呼吸日夜节律' },
+      { id: 'qd2', name: '湾口高频二氧化碳分压(pCO₂)系统', xPct: 58, yPct: 46, telemetry: '海气交换通量: -8.6 g C/(m²·d)', desc: '毫秒级自动捕捉海面微气象与碳汇呼吸日夜节律' },
       { id: 'qd3', name: '科学考查船专用取样锚泊区', xPct: 78, yPct: 38, telemetry: '海水DO: 8.4 mg/L | 盐度: 31.4 PSU', desc: '定期巡航采集表层至深水层浮游植物群落结构与叶绿素数据' },
     ],
     yantai: [

@@ -10,6 +10,7 @@ import {
   Sparkles,
   ShieldCheck
 } from 'lucide-react';
+import { jsPDF } from 'jspdf';
 import { StationData } from '../data/blueCarbonData';
 
 interface CCERReportModalProps {
@@ -51,10 +52,170 @@ export const CCERReportModal: React.FC<CCERReportModalProps> = ({
   const blockHash = '0x8f2d91b7a4c3e809df651478ec1209b53fa97c01289df713b9c';
 
   const handleExport = () => {
+    try {
+      const doc = new jsPDF({
+        orientation: 'portrait',
+        unit: 'mm',
+        format: 'a4',
+      });
+
+      doc.setFillColor(3, 9, 20);
+      doc.rect(0, 0, 210, 297, 'F');
+
+      doc.setDrawColor(6, 182, 212);
+      doc.setLineWidth(0.8);
+      doc.rect(8, 8, 194, 281);
+
+      doc.setDrawColor(245, 158, 11);
+      doc.setLineWidth(0.4);
+      doc.rect(10, 10, 190, 277);
+
+      doc.setTextColor(245, 158, 11);
+      doc.setFontSize(11);
+      doc.text('INTERNATIONAL CARBON REGISTRY & STANDARDS (VCS / CCER)', 105, 20, { align: 'center' });
+
+      doc.setTextColor(255, 255, 255);
+      doc.setFontSize(14);
+      doc.text('INTERNATIONAL BLUE CARBON ASSET VERIFICATION CERTIFICATE', 105, 29, { align: 'center' });
+
+      doc.setTextColor(56, 189, 248);
+      doc.setFontSize(8.5);
+      doc.text(`International Registry Serial ID: ${reportId}`, 105, 36, { align: 'center' });
+
+      doc.setDrawColor(6, 182, 212);
+      doc.setLineWidth(0.5);
+      doc.line(16, 40, 194, 40);
+
+      // Metadata section (No overlapping columns)
+      doc.setTextColor(148, 163, 184);
+      doc.setFontSize(8.5);
+      doc.text('PROJECT AUDIT LOCATION:', 20, 48);
+      doc.setTextColor(255, 255, 255);
+      doc.setFontSize(9.5);
+      doc.text(`${station.name} (${station.id.toUpperCase()} Base)`, 20, 54);
+
+      doc.setTextColor(148, 163, 184);
+      doc.setFontSize(8.5);
+      doc.text('AUDITING FISCAL YEAR:', 125, 48);
+      doc.setTextColor(245, 158, 11);
+      doc.setFontSize(9.5);
+      doc.text(`${year} Annual Global Verification`, 125, 54);
+
+      doc.setTextColor(148, 163, 184);
+      doc.setFontSize(8.5);
+      doc.text('VERIFIED METHODOLOGY:', 20, 62);
+      doc.setTextColor(226, 232, 240);
+      doc.setFontSize(9);
+      doc.text('VCS VM0033 / IPCC Wetland Coastal Saltmarsh & Seagrass Bed', 20, 68);
+
+      doc.setTextColor(148, 163, 184);
+      doc.setFontSize(8.5);
+      doc.text('ECOLOGICAL RESTORATION:', 125, 62);
+      doc.setTextColor(52, 211, 153);
+      doc.setFontSize(9);
+      doc.text(`Optimal Rate: ${intervention}% Std Target`, 125, 68);
+
+      // Highlighted Metrics Box
+      doc.setFillColor(15, 23, 42);
+      doc.roundedRect(18, 74, 174, 44, 2, 2, 'F');
+      doc.setDrawColor(16, 185, 129);
+      doc.setLineWidth(0.6);
+      doc.roundedRect(18, 74, 174, 44, 2, 2, 'S');
+
+      doc.setTextColor(56, 189, 248);
+      doc.setFontSize(8.5);
+      doc.text('VERIFIED NET CARBON SEQUESTRATION:', 26, 83);
+      doc.setTextColor(255, 255, 255);
+      doc.setFontSize(15);
+      doc.text(`${verifiedCarbonTons} Wan Tons CO2e`, 26, 92);
+
+      doc.setTextColor(245, 158, 11);
+      doc.setFontSize(8.5);
+      doc.text(`Official Guidance Clearing Price: RMB ${unitPrice.toFixed(2)} / Ton CO2e`, 26, 102);
+      doc.setTextColor(52, 211, 153);
+      doc.text(`Total Estimated Economic Asset Valuation: RMB ${Number(totalValuation).toLocaleString()} Wan Yuan`, 26, 110);
+
+      // Sub-reservoirs
+      doc.setTextColor(245, 158, 11);
+      doc.setFontSize(9.5);
+      doc.text('SUB-RESERVOIR QUANTIFICATION DETAILS:', 20, 126);
+
+      doc.setTextColor(203, 213, 225);
+      doc.setFontSize(8.5);
+      doc.text(`1. Saltmarsh Wetland Soil Organic Carbon (SOC): ${(station.carbonShare.saltmarsh).toFixed(1)}% Share`, 24, 134);
+      doc.text(`   - Native vegetation (Suaeda salsa / Phragmites) deep sediment retention.`, 24, 139);
+
+      doc.text(`2. Seagrass Bed Roots Millennium Storage (RDOC): ${(station.carbonShare.seagrass).toFixed(1)}% Share`, 24, 147);
+      doc.text(`   - Zostera marina rhizome layer burial rate 245 g C/(m2*a) with 98.4% retention.`, 24, 152);
+
+      doc.text(`3. Shellfish & Macroalgae Multi-Trophic Aquaculture: ${(station.carbonShare.shellfishAlgae).toFixed(1)}% Share`, 24, 160);
+      doc.text(`   - Bivalve calcification shell capture + Kelp photosynthetic export certified.`, 24, 165);
+
+      // Blockchain box
+      doc.setFillColor(15, 23, 42);
+      doc.rect(18, 173, 174, 34, 'F');
+      doc.setDrawColor(99, 102, 241);
+      doc.setLineWidth(0.5);
+      doc.rect(18, 173, 174, 34, 'S');
+
+      doc.setTextColor(165, 180, 252);
+      doc.setFontSize(8);
+      doc.text('INTERNATIONAL BLOCKCHAIN IMMUTABLE AUDIT TRAIL (SHA-256):', 24, 182);
+      doc.setTextColor(241, 245, 249);
+      doc.setFontSize(7.5);
+      doc.text(blockHash, 24, 190);
+      doc.setTextColor(52, 211, 153);
+      doc.setFontSize(8);
+      doc.text('[AUTHENTICITY: INTERNATIONAL BLUE CARBON REGISTRY SEALED & ON CHAIN]', 24, 199);
+
+      // Signatures (Bound to left side with maxWidth: 118 to guarantee zero collision with seal)
+      doc.setTextColor(148, 163, 184);
+      doc.setFontSize(8);
+      doc.text('Independent Auditor:', 20, 218);
+      doc.setTextColor(226, 232, 240);
+      doc.text('China Environmental United Certification Center (CEC) / Verra VVB', 20, 224, { maxWidth: 118 });
+
+      doc.setTextColor(148, 163, 184);
+      doc.text('Supervisory Authority:', 20, 232);
+      doc.setTextColor(226, 232, 240);
+      doc.text('Shandong Provincial Department of Natural Resources & Marine Bureau', 20, 238, { maxWidth: 118 });
+
+      doc.setTextColor(148, 163, 184);
+      doc.text('Accreditation Agency:', 20, 246);
+      doc.setTextColor(226, 232, 240);
+      doc.text('International Carbon Neutrality Metrology Standard Authority', 20, 252, { maxWidth: 118 });
+
+      doc.setTextColor(203, 213, 225);
+      doc.setFontSize(8);
+      doc.text(`Document Generation Date: September 28, ${year}`, 20, 260);
+
+      // Official Stamp Seal on Right Side (x=165, y=240, r=18) - isolated from text
+      const sealX = 165;
+      const sealY = 240;
+      doc.setDrawColor(244, 63, 94);
+      doc.setLineWidth(0.8);
+      doc.circle(sealX, sealY, 18, 'S');
+      doc.setLineWidth(0.4);
+      doc.circle(sealX, sealY, 16, 'S');
+
+      doc.setTextColor(244, 63, 94);
+      doc.setFontSize(6);
+      doc.text('BLUE CARBON REGISTRY', sealX, sealY - 9, { align: 'center' });
+      doc.setFontSize(8);
+      doc.text('VALIDATED', sealX, sealY - 2, { align: 'center' });
+      doc.setFontSize(6);
+      doc.text('OFFICIAL VERIFIED', sealX, sealY + 5, { align: 'center' });
+      doc.setFontSize(5);
+      doc.text(`${year}.09.28 AUDITED`, sealX, sealY + 11, { align: 'center' });
+
+      doc.save(`${reportId}.pdf`);
+    } catch (e) {
+      console.error('Export PDF error:', e);
+    }
     setDownloadSuccessToast(true);
     setTimeout(() => {
       setDownloadSuccessToast(false);
-    }, 3000);
+    }, 4000);
   };
 
   return (
@@ -147,32 +308,32 @@ export const CCERReportModal: React.FC<CCERReportModalProps> = ({
 
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 text-center">
                 <div className="p-3 rounded-lg bg-slate-900/90 border border-cyan-500/20">
-                  <span className="text-slate-400 block text-[11px]">经核定有效净固碳量</span>
+                  <span className="text-slate-300 block text-xs font-semibold">经核定有效净固碳量</span>
                   <div className="flex items-baseline justify-center gap-1 mt-1">
                     <span className="font-num text-2xl font-bold text-cyan-300">
                       {verifiedCarbonTons}
                     </span>
-                    <span className="text-xs text-slate-400 font-medium">万吨 CO2e</span>
+                    <span className="text-xs text-slate-200 font-bold">万吨 CO₂e</span>
                   </div>
                 </div>
 
                 <div className="p-3 rounded-lg bg-slate-900/90 border border-amber-500/20">
-                  <span className="text-slate-400 block text-[11px]">当期指导结算挂牌价</span>
+                  <span className="text-slate-300 block text-xs font-semibold">当期指导结算挂牌价</span>
                   <div className="flex items-baseline justify-center gap-1 mt-1">
                     <span className="font-num text-2xl font-bold text-amber-300">
                       ¥{unitPrice.toFixed(1)}
                     </span>
-                    <span className="text-xs text-slate-400 font-medium">/ 吨 CO2e</span>
+                    <span className="text-xs text-slate-200 font-bold">/ 吨 CO₂e</span>
                   </div>
                 </div>
 
                 <div className="p-3 rounded-lg bg-slate-900/90 border border-emerald-500/20">
-                  <span className="text-slate-400 block text-[11px]">潜在碳资产总经济估值</span>
+                  <span className="text-slate-300 block text-xs font-semibold">潜在碳资产总经济估值</span>
                   <div className="flex items-baseline justify-center gap-1 mt-1">
                     <span className="font-num text-2xl font-bold text-emerald-300">
                       {Number(totalValuation).toLocaleString()}
                     </span>
-                    <span className="text-xs text-slate-400 font-medium">万元</span>
+                    <span className="text-xs text-slate-200 font-bold">万元</span>
                   </div>
                 </div>
               </div>
@@ -184,9 +345,9 @@ export const CCERReportModal: React.FC<CCERReportModalProps> = ({
                 <Sparkles className="w-3.5 h-3.5 text-cyan-400" />
                 <span>立体数据交叉校验与区块链防篡改溯源凭证：</span>
               </div>
-              <ul className="list-disc list-inside space-y-1 text-slate-300 text-[11px] leading-relaxed">
+              <ul className="list-disc list-inside space-y-1.5 text-slate-200 text-xs leading-relaxed font-medium">
                 <li>天基遥感验证：高分六号（GF-6）多光谱反演地表植被覆盖度与水体叶绿素a（置信度 99.2%）</li>
-                <li>海基原位标定：海岸带涡度相关通量塔（EC150）10Hz高频CO2通量连续监测数据校正</li>
+                <li>海基原位标定：海岸带涡度相关通量塔（EC150）10Hz高频CO₂通量连续监测数据校正</li>
                 <li>水下沉积测定：柱状沉积物年代学（210Pb/137Cs）沉积碳埋藏速率：{station.buoySensors.burialRate} g C/(m²·a)</li>
                 <li>生态修复增量：生态干预治理（互花米草治理/海草床扩繁）核定贡献增益率 {(intervention * 0.18).toFixed(1)}%</li>
               </ul>

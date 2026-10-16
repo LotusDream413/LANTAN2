@@ -480,7 +480,7 @@ export const ScenarioPredictionSimulator: React.FC = () => {
                 fontSize="10"
                 fontFamily="sans-serif"
               >
-                年总碳吸收通量 (万吨 CO2e)
+                年总碳吸收通量 (万吨 CO₂e)
               </text>
             </svg>
           </div>

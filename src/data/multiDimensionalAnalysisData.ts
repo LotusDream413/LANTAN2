@@ -42,8 +42,8 @@ export interface FisheryBioCarbonItem {
   species: string; // 代表物种
   cultureArea: number; // 万亩
   annualYield: number; // 万吨
-  carbonSinkRate: number; // 固碳速率 tCO2e/公顷·年
-  annualCarbonSink: number; // 年固碳总量 万吨CO2e
+  carbonSinkRate: number; // 固碳速率 tCO₂e/公顷·年
+  annualCarbonSink: number; // 年固碳总量 万吨CO₂e
   economicValue: number; // 产值 (亿元)
   purificationPower: number; // 净水与抑藻效能 (亿吨水体/年)
   sharePercentage: number; // 占全省生物碳汇比重 %
@@ -70,7 +70,7 @@ export interface CCERMarketItem {
   region: string;
   methodology: string;
   verifier: string; // 第三方核证机构
-  carbonCreditTons: number; // 核证减排量 (tCO2e)
+  carbonCreditTons: number; // 核证减排量 (tCO₂e)
   unitPrice: number; // 成交单价 (元/吨)
   totalAmountWan: number; // 交易总额 (万元)
   fulfillmentRate: number; // 履约消纳率 %
@@ -242,7 +242,7 @@ export const POLICY_EVALUATIONS: PolicyEvaluationItem[] = [
     targetMetric: '沿海蓝碳年汇量累计增幅',
     targetValue: 350,
     currentValue: 384.6,
-    unit: '万吨CO2e',
+    unit: '万吨CO₂e',
     fulfillmentRate: 109.9,
     status: '超额达成',
     statusColor: '#10b981',

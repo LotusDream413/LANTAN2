@@ -316,40 +316,40 @@ export const CarbonTradingView: React.FC<CarbonTradingViewProps> = ({
                 <span className="text-xs text-slate-400 font-mono">单位: 吨 / 元</span>
               </div>
 
-              {/* Order Book Column Subheaders */}
-              <div className="flex justify-between items-center text-xs text-slate-400 font-medium px-2.5 pt-2 pb-1">
-                <span className="w-12">档位</span>
-                <span>委价 (元)</span>
-                <span>委量 (吨)</span>
+              {/* Order Book Column Subheaders (Strictly aligned columns) */}
+              <div className="grid grid-cols-3 items-center text-xs text-slate-300 font-semibold px-3 pt-2 pb-1.5 border-b border-slate-850">
+                <span className="text-left">档位</span>
+                <span className="text-center">委价 (元)</span>
+                <span className="text-right">委量 (吨)</span>
               </div>
 
               {/* Asks (Sell Orders) */}
               <div className="space-y-1.5 my-1.5 font-mono">
                 {asks.slice().reverse().map((a, idx) => (
-                  <div key={idx} className="flex justify-between items-center text-slate-300 hover:bg-slate-900/90 px-2.5 py-1.5 rounded-lg text-sm sm:text-base transition-colors">
-                    <span className="text-xs sm:text-sm font-semibold text-rose-400 w-12">卖{asks.length - idx}</span>
-                    <span className="text-sm sm:text-base text-rose-400 font-bold tracking-wider">¥{a.price.toFixed(2)}</span>
-                    <span className="text-sm sm:text-base text-slate-200 font-semibold">{a.volume.toLocaleString()}</span>
+                  <div key={idx} className="grid grid-cols-3 items-center text-slate-300 hover:bg-slate-900/90 px-3 py-1.5 rounded-lg text-sm sm:text-base transition-colors">
+                    <span className="text-left text-xs sm:text-sm font-bold text-rose-400">卖{asks.length - idx}</span>
+                    <span className="text-center text-sm sm:text-base text-rose-400 font-extrabold tracking-wider tabular-nums">¥{a.price.toFixed(2)}</span>
+                    <span className="text-right text-sm sm:text-base text-slate-100 font-bold tabular-nums">{a.volume.toLocaleString()}</span>
                   </div>
                 ))}
               </div>
 
               {/* Spread separator */}
-              <div className="py-2 px-3 my-2.5 bg-slate-900/90 border border-amber-500/35 rounded-xl text-center font-mono font-bold text-amber-300 flex justify-between items-center shadow-inner">
-                <div className="flex items-baseline gap-1.5">
-                  <span className="text-xs text-amber-400/80">现价</span>
+              <div className="py-2.5 px-3 my-2.5 bg-slate-900/90 border border-amber-500/35 rounded-xl text-center font-mono font-bold text-amber-300 flex justify-between items-center shadow-inner">
+                <div className="flex items-baseline gap-2">
+                  <span className="text-xs text-amber-400 font-semibold">现价</span>
                   <span className="text-base sm:text-lg text-amber-300 font-extrabold font-num">¥{currentMarketPrice.toFixed(2)}</span>
                 </div>
-                <span className="text-xs sm:text-sm text-emerald-400 font-medium">买卖点差 0.04</span>
+                <span className="text-xs sm:text-sm text-emerald-400 font-semibold">买卖点差 0.04</span>
               </div>
 
               {/* Bids (Buy Orders) */}
               <div className="space-y-1.5 my-1.5 font-mono">
                 {bids.map((b, idx) => (
-                  <div key={idx} className="flex justify-between items-center text-slate-300 hover:bg-slate-900/90 px-2.5 py-1.5 rounded-lg text-sm sm:text-base transition-colors">
-                    <span className="text-xs sm:text-sm font-semibold text-emerald-400 w-12">买{idx + 1}</span>
-                    <span className="text-sm sm:text-base text-emerald-400 font-bold tracking-wider">¥{b.price.toFixed(2)}</span>
-                    <span className="text-sm sm:text-base text-slate-200 font-semibold">{b.volume.toLocaleString()}</span>
+                  <div key={idx} className="grid grid-cols-3 items-center text-slate-300 hover:bg-slate-900/90 px-3 py-1.5 rounded-lg text-sm sm:text-base transition-colors">
+                    <span className="text-left text-xs sm:text-sm font-bold text-emerald-400">买{idx + 1}</span>
+                    <span className="text-center text-sm sm:text-base text-emerald-400 font-extrabold tracking-wider tabular-nums">¥{b.price.toFixed(2)}</span>
+                    <span className="text-right text-sm sm:text-base text-slate-100 font-bold tabular-nums">{b.volume.toLocaleString()}</span>
                   </div>
                 ))}
               </div>
@@ -377,9 +377,9 @@ export const CarbonTradingView: React.FC<CarbonTradingViewProps> = ({
               </div>
 
               <div>
-                <div className="flex justify-between text-xs sm:text-sm text-slate-300 mb-1.5 font-medium">
+                <div className="flex justify-between text-xs sm:text-sm text-slate-200 mb-1.5 font-semibold">
                   <span>申报交易量:</span>
-                  <span className="font-mono text-sm sm:text-base font-bold text-cyan-300">{tradeVolumeTons.toLocaleString()} 吨 CO2e</span>
+                  <span className="font-mono text-sm sm:text-base font-bold text-cyan-300">{tradeVolumeTons.toLocaleString()} 吨 CO₂e</span>
                 </div>
                 <input
                   type="range"

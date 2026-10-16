@@ -203,7 +203,7 @@ export const LoginScreen: React.FC<LoginScreenProps> = ({ onLoginSuccess }) => {
               <span className="text-xs text-slate-300 block font-medium">全省年度核算固碳量</span>
               <div className="flex items-baseline gap-1 mt-1.5">
                 <span className="font-num text-2xl font-bold text-emerald-400">432.8</span>
-                <span className="text-xs text-slate-400 font-mono">万吨 CO2e</span>
+                <span className="text-xs text-slate-200 font-mono font-bold">万吨 CO₂e</span>
               </div>
               <span className="text-xs text-cyan-400 block mt-1">同比增长 +12.4%</span>
             </div>

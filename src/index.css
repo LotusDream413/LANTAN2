@@ -183,7 +183,57 @@ table td {
   padding-top: 0.85rem !important;
   padding-bottom: 0.85rem !important;
   line-height: 1.45rem !important;
+}/* ========================================================
+   ENHANCED GLOBAL SMALL TEXT TYPOGRAPHY (全局加粗放大所有小白字与次要文字)
+   ======================================================== */
+[class*="text-[7px]"], .text-\[7px\] {
+  font-size: 11px !important;
+  font-weight: 600 !important;
+  color: #f8fafc !important;
 }
 
+[class*="text-[8px]"], .text-\[8px\] {
+  font-size: 11.5px !important;
+  font-weight: 600 !important;
+  color: #f8fafc !important;
+  letter-spacing: 0.02em;
+}
 
+[class*="text-[8.5px]"], .text-\[8\.5px\] {
+  font-size: 12px !important;
+  font-weight: 600 !important;
+  color: #f8fafc !important;
+}
+
+[class*="text-[9px]"], .text-\[9px\] {
+  font-size: 12.5px !important;
+  font-weight: 600 !important;
+  color: #f8fafc !important;
+}
+
+[class*="text-[9.5px]"], .text-\[9\.5px\] {
+  font-size: 13px !important;
+  font-weight: 600 !important;
+  color: #f8fafc !important;
+}
+
+[class*="text-[10px]"], .text-\[10px\] {
+  font-size: 13.5px !important;
+  font-weight: 600 !important;
+  color: #f8fafc !important;
+}
+
+[class*="text-[11px]"], .text-\[11px\] {
+  font-size: 14px !important;
+  font-weight: 600 !important;
+  color: #ffffff !important;
+}
+
+/* Ensure secondary labels on dark cards have high clarity and contrast */
+.text-slate-400 {
+  color: #cbd5e1 !important; /* Bump slate-400 to slate-300 contrast */
+}
+.text-slate-500 {
+  color: #94a3b8 !important; /* Bump slate-500 to slate-400 contrast */
+}
 

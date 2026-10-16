@@ -95,7 +95,7 @@ export const PROVINCE_OVERVIEW: StationData = {
   carbonGrowthRate: 8.6,
   uniqueMetrics: [
     { label: '全省蓝碳生态空间面积', value: '184.2', unit: '万公顷', sublabel: '居沿海省份前列' },
-    { label: '年均蓝碳汇增量潜力', value: '412.5', unit: '万吨CO2e', sublabel: '含微型生物碳泵' },
+    { label: '年均蓝碳汇增量潜力', value: '412.5', unit: '万吨CO₂e', sublabel: '含微型生物碳泵' },
     { label: '入海径流输送有机碳', value: '128.9', unit: '万吨/年', sublabel: '陆海交互关键汇' },
     { label: '蓝碳生态系统总估值', value: '30,192', unit: '万元', sublabel: 'CCER基准测算' },
   ],
@@ -164,7 +164,7 @@ export const STATIONS: Record<string, StationData> = {
     carbonGrowthRate: 11.4,
     uniqueMetrics: [
       { label: '翅碱蓬红地毯湿地面积', value: '6,420', unit: '公顷', sublabel: '原生潮滩植被' },
-      { label: '芦苇群落高碳汇储量', value: '82.4', unit: '万吨CO2e', sublabel: '耐盐碱高效吸碳' },
+      { label: '芦苇群落高碳汇储量', value: '82.4', unit: '万吨CO₂e', sublabel: '耐盐碱高效吸碳' },
       { label: '互花米草攻坚清除率', value: '96.2%', unit: '治理率', sublabel: '生态位恢复达标' },
       { label: '黄河入海泥沙有机碳埋藏', value: '312.0', unit: 'g/(m²·a)', sublabel: '深层千年封存' },
     ],
@@ -231,7 +231,7 @@ export const STATIONS: Record<string, StationData> = {
     carbonGrowthRate: 9.8,
     uniqueMetrics: [
       { label: '大叶藻海草床覆盖度', value: '78.5%', unit: '茂密盖度', sublabel: '底栖微生境优良' },
-      { label: '贝藻立体养殖年固碳量', value: '56.8', unit: '万吨CO2e', sublabel: '海带贻贝协同' },
+      { label: '贝藻立体养殖年固碳量', value: '56.8', unit: '万吨CO₂e', sublabel: '海带贻贝协同' },
       { label: '溶解无机碳(DIC)转化率', value: '91.2%', unit: '生化效率', sublabel: '海气吸收加速' },
       { label: '贝类壳体钙化长期固碳', value: '24.6', unit: '万吨碳酸钙', sublabel: '百年稳定沉降' },
     ],
@@ -288,7 +288,7 @@ export const STATIONS: Record<string, StationData> = {
     coordinates: { lon: 120.25, lat: 36.12 },
     svgCoords: { x: 550, y: 350 },
     tagline: '国际海洋科技核心区 · 城市海岸带海-气碳通量与港口中和试验',
-    description: '布设于胶州湾口高频涡度相关通量塔与智能浮标阵列，重点探究海湾潮汐水位变动与大气CO2净交换通量的耦合响应。',
+    description: '布设于胶州湾口高频涡度相关通量塔与智能浮标阵列，重点探究海湾潮汐水位变动与大气CO₂净交换通量的耦合响应。',
     carbonTotal: 68.20,
     carbonShare: {
       saltmarsh: 22.5,
@@ -297,7 +297,7 @@ export const STATIONS: Record<string, StationData> = {
     },
     carbonGrowthRate: 7.5,
     uniqueMetrics: [
-      { label: '海-气CO2净吸收通量', value: '-5.24', unit: 'mmol/(m²·d)', sublabel: '持续强净汇' },
+      { label: '海-气CO₂净吸收通量', value: '-5.24', unit: 'mmol/(m²·d)', sublabel: '持续强净汇' },
       { label: '潮汐水位吸收增益协同率', value: '+34.5%', unit: '涨落耦合', sublabel: '半日潮驱动' },
       { label: '港口低碳航道与蓝碳中和', value: '31.2%', unit: '中和配比', sublabel: '碳普惠试点' },
       { label: '海岸线生态红线受控率', value: '94.8%', unit: '保护比例', sublabel: '严控工程填海' },
@@ -364,7 +364,7 @@ export const STATIONS: Record<string, StationData> = {
     },
     carbonGrowthRate: 8.9,
     uniqueMetrics: [
-      { label: '深远海多层级海洋牧场碳汇', value: '49.3', unit: '万吨CO2e', sublabel: '国家级海洋牧场' },
+      { label: '深远海多层级海洋牧场碳汇', value: '49.3', unit: '万吨CO₂e', sublabel: '国家级海洋牧场' },
       { label: '藻场人工礁体海藻附着量', value: '38.6', unit: '株/m²', sublabel: '底栖生物庇护' },
       { label: '微型生物碳泵(MCP)储碳活度', value: '88.7%', unit: '微生物催化', sublabel: '转化持久惰性碳' },
       { label: '惰性溶解有机碳(RDOC)存量', value: '26.5', unit: '万吨', sublabel: '千年级化学封存' },
@@ -432,7 +432,7 @@ export const STATIONS: Record<string, StationData> = {
     carbonGrowthRate: 8.2,
     uniqueMetrics: [
       { label: '大型生态海藻鲜品总生物量', value: '14.2', unit: '万吨', sublabel: '裙带菜高产' },
-      { label: '海岛岛礁区碳汇年增量', value: '18.7', unit: '万吨CO2e', sublabel: '多物种协同' },
+      { label: '海岛岛礁区碳汇年增量', value: '18.7', unit: '万吨CO₂e', sublabel: '多物种协同' },
       { label: '阳光海岸带生态耐候指数', value: '0.892', unit: '稳定性', sublabel: '抗风暴潮韧性' },
       { label: '潮汐驱动水体营养盐通量', value: '45.2', unit: 'm³/s', sublabel: '上升流滋养' },
     ],
@@ -493,7 +493,7 @@ export const ALERTS_LIST: EcologicalAlert[] = [
     prescription: {
       problemAnalysis: '夏秋交替期种子随潮汐扩散定居，若不及时干预，互花米草单优群落将降低潮滩底栖生物多样性 60% 以上，并导致原生沉积物碳埋藏通路变异。',
       suggestedMethod: '采用“机械旋耕淹水翻耕 + 芦苇/碱蓬优良原生株系快速补植”双轨生态置换治理法，避免化学药剂污染海洋水体。',
-      targetGain: '预计可保护翅碱蓬红地毯面积 35 公顷，挽回潜在蓝碳损失约 1,840 吨 CO2e。',
+      targetGain: '预计可保护翅碱蓬红地毯面积 35 公顷，挽回潜在蓝碳损失约 1,840 吨 CO₂e。',
       executionStages: [
         '第一阶段（24小时内）：高光谱无人机对4.2公顷斑块划定厘米级电子围栏',
         '第二阶段（3日内）：低潮期特种水陆两栖旋耕机实施根系彻底切碎与翻埋（深翻>40cm）',
@@ -513,7 +513,7 @@ export const ALERTS_LIST: EcologicalAlert[] = [
     prescription: {
       problemAnalysis: '海草床天然扩繁受水流剪切力与海底沉积底质影响，人工辅助播种可将成苗存活率由自然状态下的 12% 提升至 68% 以上。',
       suggestedMethod: '实施“水下网袋泥沙固定播种法”与“幼苗泥球沉降移植技术”，配合局部休渔禁拖网保护网格。',
-      targetGain: '新增高密度健康海草床 120 公顷，年增固碳能力达 4,320 吨 CO2e。',
+      targetGain: '新增高密度健康海草床 120 公顷，年增固碳能力达 4,320 吨 CO₂e。',
       executionStages: [
         '潜水作业队于大叶藻成熟株系采收生殖穗',
         '室内低温微流水控温促进种子脱落与防霉预处理',
@@ -553,7 +553,7 @@ export const ALERTS_LIST: EcologicalAlert[] = [
     prescription: {
       problemAnalysis: '深水低温上升流与马尾藻多糖分泌形成协同微环境，驱动异养细菌将易分解DOC转化为难以被氧化的RDOC。',
       suggestedMethod: '继续扩大生态多孔透水人工礁群投放规模，构建海底“藻-菌-贝-底栖”四元立体固碳闭环。',
-      targetGain: '预计年增千年以上尺度长期深海封存碳 1,200 吨 CO2e。',
+      targetGain: '预计年增千年以上尺度长期深海封存碳 1,200 吨 CO₂e。',
       executionStages: [
         '持续跟踪水下溶解有机碳(DOC)组分质谱分析',
         '增设深水30米光量子与氧化还原电位探头',

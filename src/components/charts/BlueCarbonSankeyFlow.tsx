@@ -46,13 +46,13 @@ export const BlueCarbonSankeyFlow: React.FC = () => {
     {
       id: 'src_air',
       stage: 0,
-      name: '海-气界面CO2物理净吸收',
+      name: '海-气界面CO₂物理净吸收',
       subname: '大气溶入海水分压梯度驱动',
       value: 71.3,
       share: 44.5,
       color: '#06b6d4',
       glowColor: 'rgba(6,182,212,0.4)',
-      description: '依托黄渤海冷水团和海气温差，大气CO2通过物理溶解扩散进入表层海水，经碳酸盐平衡体系形成溶解无机碳(DIC)。',
+      description: '依托黄渤海冷水团和海气温差，大气CO₂通过物理溶解扩散进入表层海水，经碳酸盐平衡体系形成溶解无机碳(DIC)。',
     },
     {
       id: 'src_river',
@@ -208,7 +208,7 @@ export const BlueCarbonSankeyFlow: React.FC = () => {
   // Flow links connecting stages
   const links: SankeyLink[] = [
     // Stage 0 -> Stage 1
-    { source: 'src_air', target: 'cap_seagrass', value: 24.2, flowType: 'nature', description: '表层海水吸收CO2供给海草床光合生长' },
+    { source: 'src_air', target: 'cap_seagrass', value: 24.2, flowType: 'nature', description: '表层海水吸收CO₂供给海草床光合生长' },
     { source: 'src_air', target: 'cap_imta', value: 28.1, flowType: 'nature', description: '表层水体DIC被筏式养殖海带高密度吸收' },
     { source: 'src_air', target: 'cap_mcp', value: 19.0, flowType: 'nature', description: '开阔海域表层微藻与微型生物初级生产' },
 
@@ -283,7 +283,7 @@ export const BlueCarbonSankeyFlow: React.FC = () => {
                 山东省黄渤海蓝碳全景通量流向与价值流转桑基图 (Blue Carbon Flux & Asset Sankey Flow)
               </h3>
               <span className="px-2 py-0.5 rounded bg-cyan-950/80 border border-cyan-500/40 text-cyan-300 text-[10px] font-mono">
-                全省总通量 160.2 万吨 CO2e
+                全省总通量 160.2 万吨 CO₂e
               </span>
             </div>
             <p className="text-[11px] text-slate-400 mt-0.5">
@@ -406,7 +406,7 @@ export const BlueCarbonSankeyFlow: React.FC = () => {
                 <span className="w-2.5 h-2.5 rounded-full" style={{ backgroundColor: selectedNodeObj.color }} />
                 <span className="font-bold text-sm text-white">当前选中节点：{selectedNodeObj.name}</span>
                 <span className="px-2 py-0.5 rounded bg-slate-900 text-slate-300 font-mono text-[11px]">
-                  通量: {selectedNodeObj.value} 万吨 CO2e ({selectedNodeObj.share}%)
+                  通量: {selectedNodeObj.value} 万吨 CO₂e ({selectedNodeObj.share}%)
                 </span>
               </div>
               <button
@@ -440,7 +440,7 @@ export const BlueCarbonSankeyFlow: React.FC = () => {
       <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 text-xs pt-1">
         <div className="p-2.5 rounded-xl bg-slate-950/70 border border-slate-850">
           <span className="text-slate-400 text-[10px] block">年度海气净吸收总通量</span>
-          <span className="font-num text-sm font-bold text-cyan-300">160.20 万吨 CO2e</span>
+          <span className="font-num text-sm font-bold text-cyan-300">160.20 万吨 CO₂e</span>
         </div>
         <div className="p-2.5 rounded-xl bg-slate-950/70 border border-slate-850">
           <span className="text-slate-400 text-[10px] block">百年尺度深海沉积封存率</span>

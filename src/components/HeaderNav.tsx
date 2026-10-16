@@ -289,7 +289,7 @@ export const HeaderNav: React.FC<HeaderNavProps> = ({
               ? 'bg-gradient-to-r from-emerald-600/35 via-emerald-500/25 to-teal-600/35 text-emerald-200 border border-emerald-400 shadow-[0_0_18px_rgba(16,185,129,0.4)]'
               : 'bg-slate-950/70 border border-emerald-500/35 text-slate-200 hover:border-emerald-400 hover:text-white hover:bg-slate-800'
           }`}
-          title="切换至国家CCER核证凭证报告中心"
+          title="切换至国际CCER核证凭证报告中心"
         >
           <FileText className="w-4 h-4 text-emerald-400 group-hover:scale-110 transition-transform" />
           <div className="text-left leading-tight">

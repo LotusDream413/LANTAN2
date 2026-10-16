@@ -282,7 +282,7 @@ export const CarbonTradingModal: React.FC<CarbonTradingModalProps> = ({
             <div className="flex items-center gap-6 font-mono text-xs">
               <div>
                 <span className="text-slate-400 block text-[10px]">全日撮合成交量</span>
-                <span className="font-num text-cyan-300 font-bold">{activeTicker.volume.toLocaleString()} 吨 CO2e</span>
+                <span className="font-num text-cyan-300 font-bold">{activeTicker.volume.toLocaleString()} 吨 CO₂e</span>
               </div>
               <div>
                 <span className="text-slate-400 block text-[10px]">当日清算成交额</span>
@@ -515,7 +515,7 @@ export const CarbonTradingModal: React.FC<CarbonTradingModalProps> = ({
                     onChange={(e) => setCompanyEmissionTons(Math.max(1000, Number(e.target.value)))}
                     className="w-24 px-2 py-0.5 rounded bg-slate-900 border border-cyan-500/40 font-mono text-cyan-300 font-bold text-right"
                   />
-                  <span className="text-slate-400 font-mono">吨 CO2</span>
+                  <span className="text-slate-300 font-mono font-semibold">吨 CO₂e</span>
                 </div>
               </div>
 

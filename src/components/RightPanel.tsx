@@ -85,29 +85,29 @@ export const RightPanel: React.FC<RightPanelProps> = ({
 
         {/* 2 Big Stat Cards */}
         <div className="grid grid-cols-2 gap-2 pt-0.5">
-          <div className="p-2 rounded bg-slate-950/80 border border-cyan-500/20">
-            <span className="text-[10px] text-slate-400 block">实时累计碳汇量</span>
-            <div className="flex items-baseline gap-1 mt-0.5">
-              <span className="font-num text-lg font-bold text-cyan-300">
+          <div className="p-2.5 rounded bg-slate-950/80 border border-cyan-500/25">
+            <span className="text-xs font-semibold text-slate-200 block">实时累计碳汇量</span>
+            <div className="flex items-baseline gap-1 mt-1">
+              <span className="font-num text-xl font-bold text-cyan-300">
                 {currentCarbonTons.toFixed(2)}
               </span>
-              <span className="text-[9px] text-cyan-400 font-mono">万吨</span>
+              <span className="text-xs text-cyan-400 font-mono font-bold">万吨 CO₂e</span>
             </div>
-            <div className="text-[8.5px] text-emerald-400 mt-0.5 flex items-center gap-0.5">
-              <TrendingUp className="w-2.5 h-2.5" />
+            <div className="text-[11px] font-semibold text-emerald-300 mt-1 flex items-center gap-0.5">
+              <TrendingUp className="w-3 h-3" />
               <span>干预增益 +{(intervention * 0.18).toFixed(1)}%</span>
             </div>
           </div>
 
-          <div className="p-2 rounded bg-slate-950/80 border border-amber-500/20">
-            <span className="text-[10px] text-slate-400 block">可交易经济估值</span>
-            <div className="flex items-baseline gap-1 mt-0.5">
-              <span className="font-num text-lg font-bold text-amber-300">
+          <div className="p-2.5 rounded bg-slate-950/80 border border-amber-500/25">
+            <span className="text-xs font-semibold text-slate-200 block">可交易经济估值</span>
+            <div className="flex items-baseline gap-1 mt-1">
+              <span className="font-num text-xl font-bold text-amber-300">
                 {Math.round(totalValuationWanYuan).toLocaleString()}
               </span>
-              <span className="text-[9px] text-amber-400 font-mono">万元</span>
+              <span className="text-xs text-amber-400 font-mono font-bold">万元</span>
             </div>
-            <div className="text-[8.5px] text-amber-400/90 mt-0.5 font-mono">
+            <div className="text-[11px] font-semibold text-amber-300 mt-1 font-mono">
               单价: ¥{unitCarbonPrice.toFixed(1)}/吨
             </div>
           </div>
@@ -116,24 +116,24 @@ export const RightPanel: React.FC<RightPanelProps> = ({
         {/* Quick action button */}
         <button
           onClick={onOpenCCERModal}
-          className="w-full py-1.5 px-3 rounded bg-gradient-to-r from-amber-600/30 via-amber-500/20 to-amber-600/30 border border-amber-500/40 text-amber-200 text-xs font-semibold hover:bg-amber-500/30 hover:border-amber-400 transition-all flex items-center justify-center gap-1.5 shadow-[0_0_10px_rgba(245,158,11,0.15)] group"
+          className="w-full py-2 px-3 rounded-lg bg-gradient-to-r from-amber-600/40 via-amber-500/30 to-amber-600/40 border border-amber-500/50 text-amber-200 text-xs sm:text-sm font-bold hover:bg-amber-500/40 hover:border-amber-300 transition-all flex items-center justify-center gap-2 shadow-[0_0_12px_rgba(245,158,11,0.25)] group cursor-pointer"
         >
-          <FileText className="w-3.5 h-3.5 text-amber-400 group-hover:scale-110 transition-transform" />
-          <span>生成 CCER 国家级碳汇核证报告</span>
-          <ArrowUpRight className="w-3 h-3 text-amber-400" />
+          <FileText className="w-4 h-4 text-amber-400 group-hover:scale-110 transition-transform" />
+          <span>生成 CCER 国际碳汇核证报告</span>
+          <ArrowUpRight className="w-3.5 h-3.5 text-amber-400" />
         </button>
       </div>
 
       {/* Module 2: 24小时潮汐吸碳速率走势 (Wave Curve with Markers) */}
-      <div className="p-2.5 rounded-lg bg-slate-900/80 border border-cyan-500/20 tech-border flex flex-col gap-1 shrink-0">
+      <div className="p-2.5 rounded-lg bg-slate-900/80 border border-cyan-500/20 tech-border flex flex-col gap-1.5 shrink-0">
         <div className="flex items-center justify-between border-b border-cyan-500/15 pb-1">
           <div className="flex items-center gap-1.5">
             <Activity className="w-3.5 h-3.5 text-cyan-400" />
-            <h3 className="text-xs font-bold text-slate-100">
-              24h潮汐海-气CO2净吸收速率曲线
+            <h3 className="text-xs sm:text-sm font-bold text-slate-100">
+              24h潮汐海-气CO₂净吸收速率曲线
             </h3>
           </div>
-          <span className="text-[9px] font-mono text-cyan-400">
+          <span className="text-xs font-mono font-semibold text-cyan-400">
             mmol/(m²·h)
           </span>
         </div>
@@ -181,7 +181,7 @@ export const RightPanel: React.FC<RightPanelProps> = ({
             ))}
           </svg>
 
-          <div className="flex justify-between px-2 text-[8px] text-slate-400 font-mono">
+          <div className="flex justify-between px-2 text-xs text-slate-300 font-mono font-semibold">
             <span>02:00</span>
             <span>06:00</span>
             <span>10:00</span>
@@ -198,11 +198,11 @@ export const RightPanel: React.FC<RightPanelProps> = ({
         <div className="flex items-center justify-between border-b border-cyan-500/15 pb-1">
           <div className="flex items-center gap-1.5">
             <Gauge className="w-3.5 h-3.5 text-cyan-400" />
-            <h3 className="text-xs font-bold text-slate-100">
+            <h3 className="text-xs sm:text-sm font-bold text-slate-100">
               {station.shortName} · 特色微型仪表群
             </h3>
           </div>
-          <span className="text-[9px] text-slate-400 font-mono">实时传感器</span>
+          <span className="text-xs text-slate-300 font-mono font-semibold">实时传感器</span>
         </div>
 
         {/* 4 Mini Gauges in a 4-grid */}
@@ -211,11 +211,9 @@ export const RightPanel: React.FC<RightPanelProps> = ({
             // Gauge semi-circle stroke calculation
             const num = parseFloat(g.value.replace(/[^0-9.]/g, '')) || 85;
             const pct = Math.min(Math.max(num > 100 ? (num % 100) : num, 20), 95);
-            const semiCirc = Math.PI * 26; // r=26
-            const dash = (pct / 100) * semiCirc;
 
             return (
-              <div key={idx} className="p-1.5 rounded bg-slate-950/70 border border-slate-800 flex items-center gap-2">
+              <div key={idx} className="p-2 rounded bg-slate-950/70 border border-slate-800 flex items-center gap-2">
                 {/* SVG Semi Gauge */}
                 <div className="relative w-12 h-12 flex items-center justify-center shrink-0">
                   <svg viewBox="0 0 60 60" className="w-full h-full -rotate-90">
@@ -230,20 +228,20 @@ export const RightPanel: React.FC<RightPanelProps> = ({
                       strokeDasharray={`${(pct / 100) * (2 * Math.PI * 24)} ${2 * Math.PI * 24}`}
                     />
                   </svg>
-                  <span className="absolute font-num text-[10px] font-bold text-slate-100">
+                  <span className="absolute font-num text-xs font-bold text-slate-100">
                     {pct.toFixed(0)}%
                   </span>
                 </div>
 
                 <div className="min-w-0 flex-1">
-                  <span className="text-[10px] text-slate-400 block truncate" title={g.label}>
+                  <span className="text-xs font-semibold text-slate-200 block truncate" title={g.label}>
                     {g.label}
                   </span>
                   <div className="flex items-baseline gap-1 mt-0.5">
-                    <span className="font-num text-xs font-bold text-cyan-300">
+                    <span className="font-num text-sm font-bold text-cyan-300">
                       {g.value}
                     </span>
-                    <span className="text-[8px] text-slate-400 font-mono">{g.unit}</span>
+                    <span className="text-xs text-slate-300 font-mono font-semibold">{g.unit}</span>
                   </div>
                 </div>
               </div>
@@ -253,39 +251,39 @@ export const RightPanel: React.FC<RightPanelProps> = ({
       </div>
 
       {/* Module 4: 空天地海监测网在线率柱形仪表 (Visual Progress Meters) */}
-      <div className="p-2.5 rounded-lg bg-slate-900/80 border border-cyan-500/20 tech-border flex flex-col gap-1 shrink-0">
+      <div className="p-2.5 rounded-lg bg-slate-900/80 border border-cyan-500/20 tech-border flex flex-col gap-1.5 shrink-0">
         <div className="flex items-center justify-between border-b border-cyan-500/15 pb-1">
           <div className="flex items-center gap-1.5">
             <Radio className="w-3.5 h-3.5 text-cyan-400" />
-            <h3 className="text-xs font-bold text-slate-100">
+            <h3 className="text-xs sm:text-sm font-bold text-slate-100">
               空天地海监测网工况柱形图
             </h3>
           </div>
-          <span className="text-[9px] text-emerald-400 font-mono flex items-center gap-1">
-            <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-ping inline-block" />
+          <span className="text-xs text-emerald-400 font-mono font-bold flex items-center gap-1">
+            <span className="w-2 h-2 rounded-full bg-emerald-400 animate-ping inline-block" />
             在线率 98.4%
           </span>
         </div>
 
         <div className="space-y-1.5 pt-0.5">
           {deviceStatuses.map((item, idx) => (
-            <div key={idx} className="p-1 rounded bg-slate-950/60 border border-slate-800 flex items-center justify-between gap-2 text-xs">
-              <span className="text-slate-300 text-[10px] w-20 shrink-0 font-medium">
+            <div key={idx} className="p-1.5 rounded bg-slate-950/60 border border-slate-800 flex items-center justify-between gap-2 text-xs">
+              <span className="text-slate-200 text-xs w-22 shrink-0 font-bold">
                 {item.name}
               </span>
 
-              <div className="flex-1 bg-slate-800 h-2 rounded-full overflow-hidden">
+              <div className="flex-1 bg-slate-800 h-2.5 rounded-full overflow-hidden">
                 <div
                   className={`h-full bg-gradient-to-r ${item.color} rounded-full`}
                   style={{ width: `${item.rate}%` }}
                 />
               </div>
 
-              <div className="w-16 text-right shrink-0">
-                <span className="font-num text-[10px] font-bold text-emerald-300">
+              <div className="w-20 text-right shrink-0">
+                <span className="font-num text-xs font-bold text-emerald-300">
                   {item.rate}%
                 </span>
-                <span className="text-[8px] text-slate-400 font-mono block leading-none">
+                <span className="text-[11px] text-slate-300 font-mono font-semibold block leading-none">
                   {item.current}
                 </span>
               </div>
